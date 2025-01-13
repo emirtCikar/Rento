@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Car_List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<Assignment2.Models.Car>
+
+<h2 style="font-size: 2em; flex-direction: column; justify-content: center; align-items: flex-start; color:blue;"><strong>Explore Our Fleet</strong></h2>
+
+@foreach (var car in Model)
+{
+    <div class="row" style="margin-bottom: 20px; align-items: center; border-bottom: 1px solid black;">
+        <div class="col" style="display: flex; flex-direction: column; justify-content: center; align-items: flex-start;">
+            <p style="color:black; font-size: 1.5em;"><strong>@car.Maker @car.Model</strong></p>
+            <br />
+            <p style="color: #f9c70c; font-size: 1.5em;"><strong>@car.Year</strong></p>
+            <br />
+            <p style="font-size: 1.5em;">
+                @if (car.CAvailable)
+                {
+                    <span style="color:green"><strong>Car is Available</strong></span>
+                }
+                else
+                {
+                    <span style="color:red"><strong>Car is not Available</strong></span>
+                }
+            </p>
+        </div>
+        <div class="col" style="display: flex; justify-content: center; align-items: center;">
+            <img src="~/Car_Images/@car.CImage" alt="Car Image" style="width:200px; height:auto;" />
+        </div>
+        <div class="col" style="display: flex; justify-content: center; align-items: center;">
+            
+            <form action="@Url.Action("Car_Info", new { id = car.ID })" method="post">
+                <button class="sign_btn" type="submit" style="background-color: #f9c70c; padding: 10px 20px; font-size: 1.5em; border-radius: 50px; ">Car Information</button>
+            </form>
+        </div>
+    </div>
+}

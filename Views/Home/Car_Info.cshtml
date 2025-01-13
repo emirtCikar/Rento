@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Car Information";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model Assignment2.Models.Car
+
+<div style="text-align: center;">
+    <img src="~/Car_Images/@Model.CImage" alt="Car Image" style="width:100%; height:auto;" />
+</div>
+
+<div style="display: flex; flex-direction: column; align-items: flex-start; margin-top: 20px;">
+    <p style="color:black; font-size: 1.5em;"><strong style="color:#4C0013;">Maker:</strong> @Model.Maker</p>
+    <br />
+    <p style="color:black; font-size: 1.5em;"><strong style="color:#4C0013;">Model:</strong> @Model.Model</p>
+    <br />
+    <p style="color:black; font-size: 1.5em;"><strong style="color:#4C0013;">Year:</strong> @Model.Year</p>
+    <br />
+    <p style="color:black; font-size: 1.5em;"><strong style="color:#4C0013;">Type:</strong> @Model.CType</p>
+    <br />
+    <p style="color:black; font-size: 1.5em;"><strong style="color:#4C0013;">Price:</strong> $@Model.Price</p>
+    <br />
+    <p style="font-size: 1.5em;">
+        <strong style="color:#4C0013;">Reserved:</strong>
+        @if (Model.CAvailable)
+        {
+            <span style="color:green">No, Reserve it now</span>
+        }
+        else
+        {
+            <span style="color:red">Yes, Please try again later!!</span>
+        }
+    </p>
+</div>
+
+        <div style="margin-top: 20px; text-align: left;">
+            @Html.ActionLink("Reservation", null, null, new { @class = "sign_btn",
+           style = "background-color: #f9c70c; padding: 10px 20px; font-size: 1.5em; border-radius: 50px;" })
+        </div>
+
+        <div class="row" style="margin-top: 20px;">
+            <div class="col" style="display: flex; justify-content: flex-start;">
+                @Html.ActionLink("Back to List", "Car_List", "Home", new { @class = "btn btn-primary", style = "margin-right: 5px; padding: 10px 20px; font-size: 1.5em;" })
+                @Html.ActionLink("Back to Home", "Index", "Home", new { @class = "btn btn-primary", style = "margin-left: 5px; padding: 10px 20px; font-size: 1.5em;" })
+            </div>
+        </div>
+
